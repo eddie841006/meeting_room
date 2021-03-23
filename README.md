@@ -1,9 +1,22 @@
 # meeting_room
-
+### Table of Contents
+   * [meeting_room](#meeting_room)
+      * [一、系統概觀與程式流程](#一系統概觀與程式流程)
+      * [二、程式說明](#二程式說明)
+         * [(一) Recording server](#一-recording-server)
+            * [1. recording_server.py](#1-recording_serverpy)
+            * [2. recording_thread_multi_mic.py](#2-recording_thread_multi_micpy)
+            * [3. cocon_api.py](#3-cocon_apipy)
+         * [(二) Recognition server](#二-recognition-server)
+            * [1. recognition_server.py](#1-recognition_serverpy)
+         * [(三) GUI](#三-gui)
+            * [1. GUI_product_v2.py](#1-gui_product_v2py)
+            * [2. meeting_record.py](#2-meeting_recordpy)
+***
 智慧型會議室系統讓使用者能透過麥克風發言，然後系統再將發言者、發言內容和發言摘要呈現在圖形介面上，要達到上述功能必須要有程式進行設備間的介接，協助傳遞資料。本文件要來說明進行介接的Python程式，程式的主要功能簡述如下：
 * 能各別錄製會議主機麥克風的語音串流。
 * 能讀到特定麥克風的按鈕事件，進而觸發程式切割語音片段後送AI伺服器進行語音辨識，最後將辨識結果呈現在圖形介面上。
-
+***
 ## 一、系統概觀與程式流程
 
 圖1呈現系統概觀，系統包含3個主機（黃色方塊）：會議主機、本機電腦與AI伺服器，主機之間透過有線網路（綠色實心箭頭）通訊，介接程式為圖中3個藍色方塊，分別是Recording server、GUI和Recognition server，實作在本機電腦。當有麥克風開啟與關閉事件發生時，資料傳遞的流程說明如下：
